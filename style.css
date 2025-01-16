@@ -1,0 +1,156 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Readable font */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 10px;
+    background: linear-gradient(135deg, #e0f7fa, #c8e6c9); /* Light green gradient */
+    color: #2e7d32; /* Dark green text */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.logo, .title, .datetime {
+    flex: 1;
+}
+
+.title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1b5e20; /* Dark green */
+}
+
+.datetime {
+    text-align: right;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row; /* Stack vertically */
+    text-align:center;
+    gap: 15px;
+}
+
+.datetime span {
+    background: rgba(233, 245, 233, 0.9); /* Light green background */
+    padding: 5px 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.prayer-times {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+    flex: 1;
+}
+
+.tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #66bb6a; /* Medium green */
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.tile:hover {
+    transform: scale(1.05);
+    background-color: #43a047; /* Darker green on hover */
+}
+
+.announcements {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+.image-slider {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.slider-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: none;
+}
+
+.slider-image.active {
+    display: block;
+}
+
+.text-announcements {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;
+    color: #2e7d32; /* Dark green text */
+}
+
+.text-announcements div {
+    background: rgba(233, 245, 233, 0.9); /* Light green background */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .datetime {
+        text-align: center;
+    }
+
+    .prayer-times {
+        grid-template-columns: repeat(2, 1fr); /* 2x4 grid on smaller screens */
+        grid-template-rows: repeat(4, 1fr);
+    }
+
+    .announcements {
+        flex-direction: column;
+    }
+
+    .image-slider {
+        width: 100%;
+    }
+
+    .text-announcements {
+        width: 100%;
+    }
+}
