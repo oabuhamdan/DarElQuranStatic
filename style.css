@@ -1,12 +1,16 @@
 /* General Styles */
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: Arial, sans-serif;
-  background-color: #e8f5e9;
+  background-color: #e0f7e0;
   color: #2e7d32;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  font-size: calc(1vw + 1vh); /* Dynamic font size based on width and height */
+  line-height: 1.6;
 }
 
 /* Top Bar */
@@ -14,127 +18,193 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 20vh; /* 20% of the page */
-  background-color: #4caf50;
-  padding: 0 20px;
+  height: 15vh;
+  background-color: #1b5e20;
   color: white;
+  padding: 0 2vw; /* Dynamic padding */
+  font-size: calc(1.5vw + 1.5vh); /* Larger dynamic font size */
+  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  position: relative; /* Required for absolute positioning of the title */
 }
 
-.top-bar .logo,
-.top-bar .title,
-.top-bar .clock {
+.time-date {
   flex: 1;
   text-align: center;
+  font-size: calc(1.5vw + 1.5vh); /* Larger dynamic font size */
+}
+.logo{
+  width: 18vh
+}
+.title {
+  position: absolute; /* Position the title absolutely */
+  left: 50%; /* Move the title to the horizontal center */
+  transform: translateX(-50%); /* Adjust for the title's own width */
+  font-size: calc(1.3vw + 1.3vh); /* Match the top bar font size */
+  white-space: nowrap; /* Prevent the title from wrapping */
 }
 
-.top-bar .clock i {
-  margin-right: 5px;
+.time-date {
+  text-align: right;
 }
 
 /* Container */
 .container {
   display: flex;
-  flex-wrap: wrap;
-  flex: 1;
-  padding: 10px;
-  gap: 10px;
+  height: 85vh;
+  flex-direction: row;
+  padding: 2vh 2vw; /* Dynamic padding */
 }
 
-/* Right Side Tiles */
-.right-side {
-  width: 30%;
+/* Tiles */
+.left-tiles, .right-tiles {
+  width: 25%;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .tile {
-  background-color: #a5d6a7;
-  padding: 15px;
-  border-radius: 8px;
+  width: 80%;
+  height: 20%;
+  margin: 1vh 0; /* Dynamic margin */
+  background-color: #4caf50;
+  color: white;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
+  border-radius: 15px; /* Dynamic border radius */
+  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  text-align: center;
+  font-size: calc(1vw + 1vh); /* Dynamic font size */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
 }
 
-.tile h3 {
-  font-size: 1.5rem; /* Increased font size */
-  margin: 0;
+.tile:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 0.6vw 1.2vw rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
-.tile .times {
-  text-align: right;
+.tile.highlight {
+  background-color: #388e3c; /* Highlight color for previous Athan */
 }
 
-.tile .times p {
-  font-size: 1.5rem; /* Increased font size */
-  margin: 5px 0;
+.tile.current {
+  background-color: #ff4444; /* Red color for current Athan */
 }
 
-/* Image Slideshow */
+.prayer-name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* Slideshow */
 .slideshow {
-  flex: 1;
-  position: relative;
-  overflow: hidden;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a5d6a7;
+  border-radius: 1vw; /* Dynamic border radius */
+  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  overflow: hidden; /* Ensure images don't overflow */
 }
 
-.slide {
+.slideshow img {
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+  object-fit: cover; /* Ensure images cover the slideshow area */
+  border-radius: 1vw; /* Dynamic border radius */
+  transition: opacity 0.5s ease; /* Smooth image transition */
 }
 
-.slide.active {
-  opacity: 1;
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1b5e20;
+  color: white;
+  padding: 2vw; /* Dynamic padding */
+  border-radius: 1vw; /* Dynamic border radius */
+  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  z-index: 1000;
+  font-size: calc(1.5vw + 1.5vh); /* Larger dynamic font size */
 }
 
-/* Bottom Section */
-.bottom-section {
-  width: 100%;
-  display: flex;
-  gap: 10px;
-  height: 15vh; /* 15% of the page */
-}
-
-.bottom-tiles {
-  width: 50%; /* 50% of the bottom section */
-  display: flex;
-  justify-content: space-around;
-  gap: 10px;
-}
-
-.bottom-tiles .tile {
-  width: 48%;
-}
-
-.other-purpose {
-  width: 50%; /* 50% of the bottom section */
-  background-color: #c8e6c9;
-  padding: 10px;
-  border-radius: 8px;
+.modal-content {
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* Mobile Responsiveness */
+/* Mobile Styles */
 @media (max-width: 768px) {
-  .right-side {
+  body {
+    font-size: 16px; /* Minimum font size for small screens */
+  }
+
+  .top-bar {
+    font-size: 24px; /* Fixed font size for small screens */
+    padding: 0 10px; /* Fixed padding for small screens */
+  }
+
+  .container {
+    flex-direction: column;
+    height: auto;
+    padding: 10px; /* Fixed padding for small screens */
+  }
+
+  .left-tiles, .right-tiles {
     width: 100%;
-    order: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .tile {
+    width: 45%;
+    height: 100px;
+    margin: 10px 0;
+    font-size: 16px; /* Fixed font size for small screens */
+    border-radius: 10px; /* Fixed border radius for small screens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Fixed shadow for small screens */
   }
 
   .slideshow {
     width: 100%;
-    order: 2;
+    height: 300px;
+    order: 2; /* Move slideshow to the bottom */
+    border-radius: 10px; /* Fixed border radius for small screens */
   }
 
-  .bottom-section {
-    order: 3;
+  .modal {
+    padding: 20px; /* Fixed padding for small screens */
+    border-radius: 10px; /* Fixed border radius for small screens */
+    font-size: 24px; /* Fixed font size for small screens */
+  }
+}
+
+/* Maximum font size for large screens */
+@media (min-width: 1920px) {
+  body {
+    font-size: 24px; /* Maximum font size for large screens */
+  }
+
+  .top-bar {
+    font-size: 36px; /* Maximum font size for large screens */
+  }
+
+  .tile {
+    font-size: 24px; /* Maximum font size for large screens */
+  }
+
+  .slideshow {
+    font-size: 24px; /* Maximum font size for large screens */
+  }
+
+  .modal {
+    font-size: 36px; /* Maximum font size for large screens */
   }
 }
