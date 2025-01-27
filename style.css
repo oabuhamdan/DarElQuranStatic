@@ -30,16 +30,16 @@ body {
 .time-date {
   flex: 1;
   text-align: center;
-  font-size: calc(1.5vw + 1.5vh); /* Larger dynamic font size */
+  font-size: calc(1.3vw + 1.2vh); /* Larger dynamic font size */
 }
 .logo{
-  width: 18vh
+  width: calc(6vw + 6vh)
 }
 .title {
   position: absolute; /* Position the title absolutely */
   left: 50%; /* Move the title to the horizontal center */
   transform: translateX(-50%); /* Adjust for the title's own width */
-  font-size: calc(1.3vw + 1.3vh); /* Match the top bar font size */
+  font-size: calc(1.6vw + 1.6vh); /* Match the top bar font size */
   white-space: nowrap; /* Prevent the title from wrapping */
 }
 
@@ -77,7 +77,7 @@ body {
   border-radius: 15px; /* Dynamic border radius */
   box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2); /* Subtle shadow */
   text-align: center;
-  font-size: calc(1vw + 1vh); /* Dynamic font size */
+  font-size: calc(1vw + 1.2vh); /* Dynamic font size */
   transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
 }
 
@@ -99,7 +99,10 @@ body {
   font-weight: bold;
 }
 
-/* Slideshow */
+.highlight-red {
+  background-color: #c02e2ede !important;
+}
+
 .slideshow {
   width: 50%;
   display: flex;
@@ -109,34 +112,107 @@ body {
   border-radius: 1vw; /* Dynamic border radius */
   box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2); /* Subtle shadow */
   overflow: hidden; /* Ensure images don't overflow */
+  position: relative; /* Required for absolute positioning of images */
 }
 
-.slideshow img {
+.slideshow-image {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ensure images cover the slideshow area */
   border-radius: 1vw; /* Dynamic border radius */
-  transition: opacity 0.5s ease; /* Smooth image transition */
+  position: absolute; /* Position images absolutely */
+  opacity: 0; /* Hide all images by default */
+  transition: opacity 1s ease; /* Smooth transition for image changes */
+  transform: scale(1.5); /* Scale the image to 1.2 times its size */
 }
 
-/* Modal */
+.slideshow-image.active {
+  opacity: 1; /* Show the active image */
+}
+
 .modal {
-  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 60%; /* 60% of screen width */
+  height: 60%; /* 60% of screen height */
   background-color: #1b5e20;
   color: white;
-  padding: 2vw; /* Dynamic padding */
-  border-radius: 1vw; /* Dynamic border radius */
-  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  border-radius: 15px;
+  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  font-size: calc(1.5vw + 1.5vh); /* Larger dynamic font size */
+  font-size: calc(1.5vw + 1.5vh);
+  justify-content: center;
+  align-items: center;
+  animation: pulse 2s infinite; /* Pulsing animation */
+  display: none; /* Hidden by default */
+}
+
+.modal.active {
+  display: flex; /* Show the modal as a flex container */
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 .modal-content {
   text-align: center;
+}
+
+.news-ticker {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1b5e20;
+    color: white;
+    padding: 5px 0;
+    font-size: calc(0.8vw + 0.8vh);
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 -0.4vw 0.8vw rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.ticker-content {
+    display: inline-flex;
+    white-space: nowrap;
+    padding-left: 100%;
+    will-change: transform;
+    animation: ticker-scroll 20s linear infinite;
+}
+
+.news-item {
+    display: inline-block;
+}
+
+.news-separator {
+    display: inline-block;
+    padding: 0 2em;
+}
+
+.news-spacer {
+    display: inline-block;
+    width: 4em;
+}
+
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 /* Mobile Styles */
@@ -187,24 +263,3 @@ body {
 }
 
 /* Maximum font size for large screens */
-@media (min-width: 1920px) {
-  body {
-    font-size: 24px; /* Maximum font size for large screens */
-  }
-
-  .top-bar {
-    font-size: 36px; /* Maximum font size for large screens */
-  }
-
-  .tile {
-    font-size: 24px; /* Maximum font size for large screens */
-  }
-
-  .slideshow {
-    font-size: 24px; /* Maximum font size for large screens */
-  }
-
-  .modal {
-    font-size: 36px; /* Maximum font size for large screens */
-  }
-}
