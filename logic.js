@@ -1,10 +1,10 @@
 // ================ Configuration Constants ================
 const IQAMAH_TIMES = {
-  Fajr: "6:45 AM",
+  Fajr: "6:00 AM",
   Dhuhr: "1:00 PM",
   Asr: "4:00 PM",
   Maghrib: "10",
-  Isha: "7:45 PM",
+  Isha: "8:0 PM",
 };
 
 const UI_CONFIG = {
@@ -160,10 +160,10 @@ const NotificationManager = {
     }, timeUntilIqamah);
 
     // Schedule notification
-    const timeUntilNotification = timeUntilIqamah - (30 * 1000);
-    setTimeout(() => {
-      this.showIqamahNotification(prayerName);
-    }, timeUntilNotification);
+    // const timeUntilNotification = timeUntilIqamah - (30 * 1000);
+    // setTimeout(() => {
+    //   this.showIqamahNotification(prayerName);
+    // }, timeUntilNotification);
   },
 
   showIqamahNotification(prayerName) {
