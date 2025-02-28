@@ -18,11 +18,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 15vh;
+  height: 12vh;
   background-color: #1b5e20;
   color: white;
   padding: 0 2vw; /* Dynamic padding */
-  font-size: calc(1.5vw + 1.5vh); /* Larger dynamic font size */
+  font-size: calc(1.2vw + 1.2vh); /* Larger dynamic font size */
   box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2); /* Subtle shadow */
   position: relative; /* Required for absolute positioning of the title */
 }
@@ -30,16 +30,16 @@ body {
 .time-date {
   flex: 1;
   text-align: center;
-  font-size: calc(1.3vw + 1.2vh); /* Larger dynamic font size */
+  font-size: calc(1.1vw + 1.1vh); /* Larger dynamic font size */
 }
 .logo{
-  width: calc(6vw + 6vh)
+  width: calc(4vw + 4vh)
 }
 .title {
   position: absolute; /* Position the title absolutely */
   left: 50%; /* Move the title to the horizontal center */
   transform: translateX(-50%); /* Adjust for the title's own width */
-  font-size: calc(1.6vw + 1.6vh); /* Match the top bar font size */
+  font-size: calc(1.2vw + 1.2vh); /* Match the top bar font size */
   white-space: nowrap; /* Prevent the title from wrapping */
 }
 
