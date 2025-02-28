@@ -8,8 +8,8 @@ const IQAMAH_TIMES = {
 };
 
 const UI_CONFIG = {
-  TICKER_SPEED: 70,
-  SLIDESHOW_INTERVAL: 5000,
+  TICKER_SPEED: 50,
+  SLIDESHOW_INTERVAL: 10000,
 };
 
 // ================ Time Utilities ================
