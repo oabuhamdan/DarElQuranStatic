@@ -123,7 +123,6 @@ body {
   position: absolute; /* Position images absolutely */
   opacity: 0; /* Hide all images by default */
   transition: opacity 1s ease; /* Smooth transition for image changes */
-  transform: scale(1.5); /* Scale the image to 1.2 times its size */
 }
 
 .slideshow-image.active {
