@@ -254,6 +254,7 @@ function initialize() {
   TimeUtils.updateCurrentTime();
   ScheduleManager.schedulePrayerTimesFetch();
   setInterval(TimeUtils.updateCurrentTime, 1000);
+  document.getElementById("silent-video").play();
 }
 
 // Start the application
