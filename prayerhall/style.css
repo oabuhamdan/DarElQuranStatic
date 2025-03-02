@@ -1,0 +1,264 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e0f7e0;
+  color: #2e7d32;
+  font-size: calc(1vw + 1vh); /* Dynamic font size based on width and height */
+  line-height: 1.6;
+}
+
+/* Top Bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 12vh;
+  background-color: #1b5e20;
+  color: white;
+  padding: 0 2vw; /* Dynamic padding */
+  font-size: calc(1.2vw + 1.2vh); /* Larger dynamic font size */
+  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  position: relative; /* Required for absolute positioning of the title */
+}
+
+.time-date {
+  flex: 1;
+  text-align: center;
+  font-size: calc(1.1vw + 1.1vh); /* Larger dynamic font size */
+}
+.logo{
+  width: calc(4vw + 4vh)
+}
+.title {
+  position: absolute; /* Position the title absolutely */
+  left: 50%; /* Move the title to the horizontal center */
+  transform: translateX(-50%); /* Adjust for the title's own width */
+  font-size: calc(1.2vw + 1.2vh); /* Match the top bar font size */
+  white-space: nowrap; /* Prevent the title from wrapping */
+}
+
+.time-date {
+  text-align: right;
+}
+
+/* Container */
+.container {
+  display: flex;
+  height: 85vh;
+  flex-direction: row;
+  padding: 2vh 2vw; /* Dynamic padding */
+}
+
+/* Tiles */
+.left-tiles, .right-tiles {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tile {
+  width: 80%;
+  height: 20%;
+  margin: 1vh 0; /* Dynamic margin */
+  background-color: #4caf50;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px; /* Dynamic border radius */
+  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  text-align: center;
+  font-size: calc(1vw + 1.2vh); /* Dynamic font size */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+.tile:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 0.6vw 1.2vw rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.tile.highlight {
+  background-color: #388e3c; /* Highlight color for previous Athan */
+}
+
+.tile.current {
+  background-color: #ff4444; /* Red color for current Athan */
+}
+
+.prayer-name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.highlight-red {
+  background-color: #c02e2ede !important;
+}
+
+.slideshow {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a5d6a7;
+  border-radius: 1vw; /* Dynamic border radius */
+  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  overflow: hidden; /* Ensure images don't overflow */
+  position: relative; /* Required for absolute positioning of images */
+}
+
+.slideshow-image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* Ensure images cover the slideshow area */
+  border-radius: 1vw; /* Dynamic border radius */
+  position: absolute; /* Position images absolutely */
+  opacity: 0; /* Hide all images by default */
+  transition: opacity 1s ease; /* Smooth transition for image changes */
+}
+
+.slideshow-image.active {
+  opacity: 1; /* Show the active image */
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%; /* 60% of screen width */
+  height: 60%; /* 60% of screen height */
+  background-color: #1b5e20;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  font-size: calc(1.5vw + 1.5vh);
+  justify-content: center;
+  align-items: center;
+  animation: pulse 2s infinite; /* Pulsing animation */
+  display: none; /* Hidden by default */
+}
+
+.modal.active {
+  display: flex; /* Show the modal as a flex container */
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.modal-content {
+  text-align: center;
+}
+
+.news-ticker {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1b5e20;
+    color: white;
+    padding: 5px 0;
+    font-size: calc(0.8vw + 0.8vh);
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 -0.4vw 0.8vw rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.ticker-content {
+    display: inline-flex;
+    white-space: nowrap;
+    padding-left: 100%;
+    will-change: transform;
+    animation: ticker-scroll 20s linear infinite;
+}
+
+.news-item {
+    display: inline-block;
+}
+
+.news-separator {
+    display: inline-block;
+    padding: 0 2em;
+}
+
+.news-spacer {
+    display: inline-block;
+    width: 4em;
+}
+
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* Minimum font size for small screens */
+  }
+
+  .top-bar {
+    font-size: 24px; /* Fixed font size for small screens */
+    padding: 0 10px; /* Fixed padding for small screens */
+  }
+
+  .container {
+    flex-direction: column;
+    height: auto;
+    padding: 10px; /* Fixed padding for small screens */
+  }
+
+  .left-tiles, .right-tiles {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .tile {
+    width: 45%;
+    height: 100px;
+    margin: 10px 0;
+    font-size: 16px; /* Fixed font size for small screens */
+    border-radius: 10px; /* Fixed border radius for small screens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Fixed shadow for small screens */
+  }
+
+  .slideshow {
+    width: 100%;
+    height: 300px;
+    order: 2; /* Move slideshow to the bottom */
+    border-radius: 10px; /* Fixed border radius for small screens */
+  }
+
+  .modal {
+    padding: 20px; /* Fixed padding for small screens */
+    border-radius: 10px; /* Fixed border radius for small screens */
+    font-size: 24px; /* Fixed font size for small screens */
+  }
+}
+
+/* Maximum font size for large screens */
