@@ -8,7 +8,7 @@ const IQAMAH_TIMES = {
 };
 
 const UI_CONFIG = {
-  TICKER_SPEED: 30,
+  TICKER_SPEED: 75,
   SLIDESHOW_INTERVAL: 10000,
 };
 
