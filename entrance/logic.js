@@ -1,14 +1,14 @@
 // ================ Configuration Constants ================
 const IQAMAH_TIMES = {
-  Fajr: "6:00 AM",
-  Dhuhr: "1:00 PM",
-  Asr: "4:00 PM",
+  Fajr: "7:00 AM",
+  Dhuhr: "2:00 PM",
+  Asr: "5:15 PM",
   Maghrib: "10",
-  Isha: "8:0 PM",
+  Isha: "9:00 PM",
 };
 
 const UI_CONFIG = {
-  TICKER_SPEED: 50,
+  TICKER_SPEED: 30,
   SLIDESHOW_INTERVAL: 10000,
 };
 
