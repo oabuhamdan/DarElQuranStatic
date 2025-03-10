@@ -3,7 +3,7 @@ const IQAMAH_TIMES = {
   Fajr: "7:00 AM",
   Dhuhr: "2:00 PM",
   Asr: "5:15 PM",
-  Maghrib: "10",
+  Maghrib: "5",
   Isha: "9:00 PM",
 };
 
