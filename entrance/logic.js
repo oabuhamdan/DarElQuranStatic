@@ -1,6 +1,6 @@
 // ================ Configuration Constants ================
 const IQAMAH_TIMES = {
-  Fajr: "7:00 AM",
+  Fajr: "6:45 AM",
   Dhuhr: "2:00 PM",
   Asr: "5:15 PM",
   Maghrib: "5",
@@ -194,7 +194,7 @@ const ScheduleManager = {
     const scheduleNextFetch = () => {
       const now = new Date();
       const nextFetch = new Date(now);
-      nextFetch.setHours(1, 0, 0, 0);
+      nextFetch.setHours(3, 0, 0, 0);
 
       if (now > nextFetch) {
         nextFetch.setDate(nextFetch.getDate() + 1);
