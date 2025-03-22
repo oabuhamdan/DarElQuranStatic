@@ -4,7 +4,7 @@ const IQAMAH_TIMES = {
   Dhuhr: "14:00",
   Asr: "17:15",
   Maghrib: "0", // Minutes after Maghrib
-  Isha: "21:00",
+  Isha: "21:15",
 };
 
 // Time Utilities
