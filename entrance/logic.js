@@ -4,7 +4,7 @@ const IQAMAH_TIMES = {
   Dhuhr: "2:00 PM",
   Asr: "5:15 PM",
   Maghrib: "5",
-  Isha: "9:00 PM",
+  Isha: "9:15 PM",
 };
 
 const UI_CONFIG = {
