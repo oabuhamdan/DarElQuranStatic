@@ -227,6 +227,7 @@ const UIManager = {
   },
 
   initializeSlideshow() {
+    fetchImagesFromURL("https://elhedaya.org/entrance");
     const images = document.querySelectorAll(".slideshow-image");
     let currentImageIndex = 0;
 
@@ -244,6 +245,36 @@ const UIManager = {
 
     setInterval(changeSlideshowImage, UI_CONFIG.SLIDESHOW_INTERVAL);
   }
+  
+  async function fetchImagesFromURL(url) {
+    try {
+        const response = await fetch(url);
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        const images = doc.querySelectorAll('img');
+        const imageUrls = [];
+        images.forEach(img => {
+            const imgSrc = img.src;
+            if (imgSrc) {
+                imageUrls.push(imgSrc);
+            }
+        });
+        const slideshowDiv = document.querySelector('.slideshow');
+        slideshowDiv.innerHTML = '';
+        imageUrls.forEach((imgSrc, index) => {
+            const imgElement = document.createElement('img');
+            imgElement.src = imgSrc; 
+            imgElement.alt = `Slideshow Image ${index + 1}`;
+            imgElement.classList.add('slideshow-image');
+            slideshowDiv.appendChild(imgElement);
+        });
+
+    } catch (error) {
+        console.error('Error fetching images:', error);
+    }
+}
 };
 
 // ================ Initialization ================
@@ -254,7 +285,7 @@ function initialize() {
   TimeUtils.updateCurrentTime();
   ScheduleManager.schedulePrayerTimesFetch();
   setInterval(TimeUtils.updateCurrentTime, 1000);
-  document.getElementById("silent-video").play();
+  setTimeout(() => { location.reload(); }, 10000); //43200000
 }
 
 // Start the application
