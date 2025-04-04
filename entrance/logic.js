@@ -246,7 +246,7 @@ const UIManager = {
     setInterval(changeSlideshowImage, UI_CONFIG.SLIDESHOW_INTERVAL);
   },
   
-  async function fetchImagesFromURL(url) {
+  async fetchImagesFromURL(url) {
     try {
         const response = await fetch(url);
         const html = await response.text();
