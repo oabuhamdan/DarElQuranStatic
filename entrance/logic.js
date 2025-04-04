@@ -227,7 +227,7 @@ const UIManager = {
   },
 
   initializeSlideshow() {
-    fetchImagesFromURL("https://elhedaya.org/entrance");
+    this.fetchImagesFromURL("https://elhedaya.org/entrance");
     const images = document.querySelectorAll(".slideshow-image");
     let currentImageIndex = 0;
 
