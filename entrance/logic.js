@@ -244,7 +244,7 @@ const UIManager = {
     }
 
     setInterval(changeSlideshowImage, UI_CONFIG.SLIDESHOW_INTERVAL);
-  }
+  },
   
   async function fetchImagesFromURL(url) {
     try {
@@ -274,7 +274,7 @@ const UIManager = {
     } catch (error) {
         console.error('Error fetching images:', error);
     }
-}
+  }
 };
 
 // ================ Initialization ================
