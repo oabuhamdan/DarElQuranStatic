@@ -285,7 +285,7 @@ function initialize() {
   TimeUtils.updateCurrentTime();
   ScheduleManager.schedulePrayerTimesFetch();
   setInterval(TimeUtils.updateCurrentTime, 1000);
-  setTimeout(() => { location.reload(); }, 10000); //43200000
+  setTimeout(() => { location.reload(); }, 21600000); //43200000
 }
 
 // Start the application
