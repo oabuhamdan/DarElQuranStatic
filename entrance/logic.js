@@ -227,7 +227,7 @@ const UIManager = {
   },
 
   initializeSlideshow() {
-    this.fetchImagesFromURL("https://elhedaya.org/entrance");
+    this.fetchImagesFromURL("https://api.allorigins.win/get?url=https://elhedaya.org/entrance");
     const images = document.querySelectorAll(".slideshow-image");
     let currentImageIndex = 0;
 
@@ -249,7 +249,9 @@ const UIManager = {
   async fetchImagesFromURL(url) {
     try {
         const response = await fetch(url);
-        const html = await response.text();
+        const json = await response.text();
+      
+        const html = JSON.parse(json).contents;
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
