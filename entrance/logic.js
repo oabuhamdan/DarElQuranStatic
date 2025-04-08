@@ -227,23 +227,37 @@ const UIManager = {
   },
 
   initializeSlideshow() {
-    this.fetchImagesFromURL("https://api.allorigins.win/get?url=https://elhedaya.org/entrance");
-    const images = document.querySelectorAll(".slideshow-image");
-    let currentImageIndex = 0;
+    this.fetchImagesFromURL("https://api.allorigins.win/get?url=https://elhedaya.org/entrance")
+      .then(() => {
+        // Now that images are fetched, start the slideshow logic
+        const images = document.querySelectorAll(".slideshow-image");
+        let currentImageIndex = 0;
 
-    function changeSlideshowImage() {
-      if (images.length === 0) return;
+        // Function to change the slideshow image
+        function changeSlideshowImage() {
+          if (images.length === 0) return;
 
-      images[currentImageIndex].classList.remove("active");
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      images[currentImageIndex].classList.add("active");
-    }
+          // Remove 'active' class from current image
+          images[currentImageIndex].classList.remove("active");
 
-    if (images.length > 0) {
-      images[0].classList.add("active");
-    }
+          // Update index and wrap around
+          currentImageIndex = (currentImageIndex + 1) % images.length;
 
-    setInterval(changeSlideshowImage, UI_CONFIG.SLIDESHOW_INTERVAL);
+          // Add 'active' class to the new image
+          images[currentImageIndex].classList.add("active");
+        }
+
+        // Ensure the first image is active initially
+        if (images.length > 0) {
+          images[0].classList.add("active");
+        }
+
+        // Set the interval to change the images
+        setInterval(changeSlideshowImage, UI_CONFIG.SLIDESHOW_INTERVAL);
+      })
+      .catch(error => {
+        console.error('Error fetching images:', error);
+      });
   },
   
 fetchImagesFromURL(url) {
