@@ -1,6 +1,6 @@
 // Configuration Constants - Store in 24-hour format
 const IQAMAH_TIMES = {
-  Fajr: "06:15",
+  Fajr: "06:00",
   Dhuhr: "14:00",
   Asr: "17:30",
   Maghrib: "10", // Minutes after Maghrib
