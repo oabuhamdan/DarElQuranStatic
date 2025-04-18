@@ -1,8 +1,8 @@
 // ================ Configuration Constants ================
 const IQAMAH_TIMES = {
-  Fajr: "6:15 AM",
+  Fajr: "6:00 AM",
   Dhuhr: "2:00 PM",
-  Asr: "5:15 PM",
+  Asr: "5:30 PM",
   Maghrib: "10",
   Isha: "9:30 PM",
 };
