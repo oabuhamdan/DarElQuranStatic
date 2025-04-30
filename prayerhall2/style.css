@@ -163,7 +163,7 @@ body, html {
 }
 
 .time-value {
-    font-size: 3vw;
+    font-size: 4vw;
     font-weight: bold;
     color: var(--text-color);
     margin-bottom: 1vh;
