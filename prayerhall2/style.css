@@ -1,0 +1,329 @@
+:root {
+    --primary-color: #1e3c72;
+    --secondary-color: #2a5298;
+    --accent-color: #f5f5f5;
+    --text-color: #333;
+    --highlight-color: #f48024;
+    --fajr-color: #576CBC;
+    --sunrise-color: #E48F45;
+    --dhuhr-color: #F2BE22;
+    --asr-color: #5C8374;
+    --maghrib-color: #9A3B3B;
+    --isha-color: #2D3250;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --border-radius: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.header {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2vh 3vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name {
+    font-size: 2vw;
+    font-weight: bold;
+}
+
+.date-time {
+    text-align: right;
+    font-size: 2.5vw;
+}
+
+.date-time .date {
+    font-size: 1.3vw;
+}
+
+.prayer-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2vw;
+    padding: 2vh 2vw;
+    flex-grow: 1;
+}
+
+.prayer-card {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    height: 100%;
+}
+
+.prayer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.prayer-header {
+    padding: 1.5vh 1vw;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5vw;
+}
+
+.fajr .prayer-header {
+    background-color: var(--fajr-color);
+}
+
+.sunrise .prayer-header {
+    background-color: var(--sunrise-color);
+}
+
+.dhuhr .prayer-header {
+    background-color: var(--dhuhr-color);
+}
+
+.asr .prayer-header {
+    background-color: var(--asr-color);
+}
+
+.maghrib .prayer-header {
+    background-color: var(--maghrib-color);
+}
+
+.isha .prayer-header {
+    background-color: var(--isha-color);
+}
+
+.icon-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.icon-placeholder span {
+    font-size: 4vw;
+}
+
+.fajr .icon-placeholder span {
+    color: var(--fajr-color);
+}
+
+.sunrise .icon-placeholder span {
+    color: var(--sunrise-color);
+}
+
+.dhuhr .icon-placeholder span {
+    color: var(--dhuhr-color);
+}
+
+.asr .icon-placeholder span {
+    color: var(--asr-color);
+}
+
+.maghrib .icon-placeholder span {
+    color: var(--maghrib-color);
+}
+
+.isha .icon-placeholder span {
+    color: var(--isha-color);
+}
+
+.time-container {
+    padding: 1.5vh 1vw;
+    background-color: white;
+    text-align: center;
+}
+
+.time-label {
+    font-weight: bold;
+    margin-bottom: 0.5vh;
+    color: var(--text-color);
+    font-size: 1.8vw;
+}
+
+.time-value {
+    font-size: 3vw;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 1vh;
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1vw;
+    padding: 2vh 2vw;
+    margin-bottom: 0.5vh;
+}
+
+.footer-card {
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5vw;
+    font-weight: bold;
+    color: white;
+    min-height: 10vh;
+}
+
+.next-prayer {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+.jumaa {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+.current-prayer {
+    box-shadow: 0 0 20px var(--highlight-color);
+    border: 3px solid var(--highlight-color);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 15px;
+  /*box-shadow: 0 0.4vw 0.8vw rgba(0, 0, 0, 0.2);*/
+  z-index: 1000;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  justify-content: center;
+  align-items: center;
+  animation: pulse 2s infinite;
+  display: none;
+}
+
+@media (max-width: 1100px) {
+    .prayer-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .prayer-header {
+        font-size: 3vw;
+    }
+
+    .time-label {
+        font-size: 2.5vw;
+    }
+
+    .time-value {
+        font-size: 4vw;
+    }
+
+    .icon-placeholder {
+        height: 5vh;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .prayer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 3vw;
+    }
+
+    .container {
+        padding-bottom: 2vh;
+    }
+
+    .icon-placeholder {
+        height: 5vh;
+    }
+
+    .icon-placeholder span {
+        font-size: 8vw;
+    }
+
+    .prayer-header {
+        font-size: 6vw;
+        padding: 1.5vh 1vw;
+    }
+
+    .time-container {
+        padding: 1.5vh 1vw;
+    }
+
+    .time-label {
+        font-size: 4vw;
+        margin-bottom: 0.5vh;
+    }
+
+    .time-value {
+        font-size: 6vw;
+        margin-bottom: 0.5vh;
+    }
+
+    .footer {
+        grid-template-columns: 1fr;
+        gap: 3vw;
+    }
+
+    .footer-card {
+        font-size: 5vw;
+        padding: 2vh;
+        min-height: 8vh;
+        word-break: break-word;
+    }
+
+    .name {
+        font-size: 6vw;
+    }
+
+    .date-time {
+        font-size: 4vw;
+    }
+
+    .prayer-card {
+        min-height: 50px;
+    }
+
+    .header {
+        height: auto;
+        padding: 2vh;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1vh;
+    }
+
+    .date-time {
+        text-align: left;
+        width: 100%;
+    }
+
+    .date-time .date {
+        font-size: 2.5vw;
+    }
+}
