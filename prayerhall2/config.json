@@ -1,0 +1,13 @@
+{
+  "iqamahTimes": {
+    "Fajr": "05:45",
+    "Dhuhr": "14:00",
+    "Asr": "17:30",
+    "Maghrib": "10",
+    "Isha": "21:30"
+  },
+  "jumaaTimings": {
+    "Jumaa1": "13:30",
+    "Jumaa2": "14:30"
+  }
+}
