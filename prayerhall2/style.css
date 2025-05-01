@@ -173,7 +173,7 @@ body, html {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1vw;
-    padding: 2vh 2vw;
+    padding: 0 2vw;
     margin-bottom: 0.5vh;
 }
 
@@ -197,6 +197,13 @@ body, html {
 
 .jumaa {
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+.footer-card.jumaa > div:first-child::after {
+    content: "•";
+    margin: 0 15px; /* spacing around the dot */
+    font-size: 50px; /* make it larger if needed */
+    color: #fff; /* adjust color as desired */
 }
 
 .current-prayer {
