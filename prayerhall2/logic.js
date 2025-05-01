@@ -1,10 +1,7 @@
-// Configuration Constants - Store in 24-hour format
-const IQAMAH_TIMES = {
-    Fajr: "05:45",
-    Dhuhr: "14:00",
-    Asr: "17:30",
-    Maghrib: "10", // Minutes after Maghrib
-    Isha: "21:30",
+// Configuration will be loaded from file
+let CONFIG = {
+    iqamahTimes: {},
+    jumaaTimings: {}
 };
 
 // Time Utilities
@@ -75,6 +72,31 @@ const TimeUtils = {
     }
 };
 
+// Configuration Manager
+const ConfigManager = {
+    async loadConfig() {
+        const response = await fetch('config.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        CONFIG = await response.json();
+        console.log("Configuration loaded successfully", CONFIG);
+
+        // Update Jumaa times in the UI
+        this.updateJumaaTimes();
+        return true;
+    },
+
+    updateJumaaTimes() {
+        if (CONFIG.jumaaTimings) {
+            document.getElementById("jumaa1-time").textContent =
+                TimeUtils.convertTo12HourFormat(CONFIG.jumaaTimings.Jumaa1, false);
+            document.getElementById("jumaa2-time").textContent =
+                TimeUtils.convertTo12HourFormat(CONFIG.jumaaTimings.Jumaa2, false);
+        }
+    }
+};
+
 // Prayer Manager
 const PrayerManager = {
     prayerTimes: {},
@@ -122,8 +144,8 @@ const PrayerManager = {
     },
 
     updateIqamahTimes(timings) {
-        for (const prayer in IQAMAH_TIMES) {
-            const iqamah = IQAMAH_TIMES[prayer];
+        for (const prayer in CONFIG.iqamahTimes) {
+            const iqamah = CONFIG.iqamahTimes[prayer];
             const athanTime = timings[prayer];
 
             if (prayer === 'Maghrib') {
@@ -146,9 +168,9 @@ const PrayerManager = {
 
             if (prayer === 'Maghrib') {
                 // For Maghrib, calculate iqamah time by adding minutes
-                iqamahTime = TimeUtils.addMinutesToTime(athanTime, IQAMAH_TIMES[prayer]);
+                iqamahTime = TimeUtils.addMinutesToTime(athanTime, CONFIG.iqamahTimes[prayer]);
             } else {
-                iqamahTime = IQAMAH_TIMES[prayer];
+                iqamahTime = CONFIG.iqamahTimes[prayer];
             }
 
             NotificationManager.schedulePrayerNotifications(prayer, athanTime, iqamahTime);
@@ -263,15 +285,16 @@ const ScheduleManager = {
 };
 
 // Initialization
-function initialize() {
-    PrayerManager.fetchPrayerTimes();
+async function initialize() {
+    await ConfigManager.loadConfig();
+    await PrayerManager.fetchPrayerTimes();
     TimeUtils.updateCurrentTime();
     ScheduleManager.schedulePrayerTimesFetch();
     setInterval(TimeUtils.updateCurrentTime, 1000);
     setInterval(TimeUtils.timeToNextAthan, 1000);
     setTimeout(() => {
         location.reload();
-    }, 21600000); //43200000
+    }, 21600000); //43200000 (12 hours in milliseconds) - currently set to 6 hours
 }
 
 initialize();
