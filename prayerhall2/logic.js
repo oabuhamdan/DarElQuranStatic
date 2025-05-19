@@ -144,11 +144,12 @@ const PrayerManager = {
     },
 
     updateIqamahTimes(timings) {
+        const isOnlyDigits = str => /^\d+$/.test(str);
         for (const prayer in CONFIG.iqamahTimes) {
             const iqamah = CONFIG.iqamahTimes[prayer];
             const athanTime = timings[prayer];
 
-            if (!Number.isNaN(iqamah)) {
+            if (isOnlyDigits(iqamah)) {
                 // Special handling - add minutes to athan time
                 const iqamahTime = TimeUtils.addMinutesToTime(athanTime, iqamah);
                 document.getElementById(`${prayer.toLowerCase()}-iqamah`).innerHTML =
