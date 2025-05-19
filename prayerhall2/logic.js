@@ -148,8 +148,8 @@ const PrayerManager = {
             const iqamah = CONFIG.iqamahTimes[prayer];
             const athanTime = timings[prayer];
 
-            if (prayer === 'Maghrib') {
-                // Special handling for Maghrib - add minutes to athan time
+            if (!Number.isNaN(iqamah)) {
+                // Special handling - add minutes to athan time
                 const iqamahTime = TimeUtils.addMinutesToTime(athanTime, iqamah);
                 document.getElementById(`${prayer.toLowerCase()}-iqamah`).innerHTML =
                     TimeUtils.convertTo12HourFormat(iqamahTime, false);
